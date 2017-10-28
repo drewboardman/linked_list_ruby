@@ -45,4 +45,17 @@ RSpec.describe LinkedList do
       expect(list.size).to eq(2)
     end
   end
+
+  describe '#at' do
+    it 'returns the node at the given index' do
+      node_1 = Node.new(4)
+      node_2 = Node.new(15)
+      node_3 = Node.new(6)
+      list = LinkedList::List.new(node_1)
+      list.append(node_2).append(node_3)
+      expect(list.at(0)).to be(node_1)
+      expect(list.at(1)).to be(node_2)
+      expect(list.at(2)).to be(node_3)
+    end
+  end
 end

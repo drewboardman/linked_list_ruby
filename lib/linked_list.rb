@@ -1,4 +1,5 @@
 require "linked_list/version"
+require 'errors'
 
 module LinkedList
   class List
@@ -11,6 +12,7 @@ module LinkedList
     def append(node)
       @tail.next_node = node
       @tail = node
+      return self
     end
 
     def prepend(node)
@@ -30,6 +32,26 @@ module LinkedList
         end
       end
       visited.size
+    end
+
+    def at(index)
+      queue = []
+      queue.insert(0, @head)
+      target = nil
+      (index+1).times do
+        begin
+          node = queue.pop
+          if node
+            queue.insert(0, node.next_node) if node.next_node
+            target = node
+          else
+            raise Errors::IndexError.new("requested index larger than size of list")
+          end
+        rescue Errors::IndexError => e
+          puts("Index out of bounds: #{e.message}")
+        end
+      end
+      target
     end
   end
 end
