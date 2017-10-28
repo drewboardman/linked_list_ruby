@@ -12,5 +12,24 @@ module LinkedList
       @tail.next_node = node
       @tail = node
     end
+
+    def prepend(node)
+      node.next_node = @head
+      @head = node
+    end
+
+    def size
+      visited = []
+      queue = []
+      queue.insert(0, @head)
+      while (!queue.empty?) do
+        node = queue.pop
+        visited << node unless visited.include?(node)
+        if node.next_node
+          queue.insert(0, node.next_node)
+        end
+      end
+      visited.size
+    end
   end
 end
