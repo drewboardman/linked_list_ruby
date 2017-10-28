@@ -20,6 +20,20 @@ module LinkedList
       @head = node
     end
 
+    def contains?(val)
+      queue = [@head]
+      while !queue.empty? do
+        node = queue.pop
+        if node.value == val
+          return true
+        elsif node.next_node == nil
+          return false
+        else
+          queue.insert(0, node.next_node)
+        end
+      end
+    end
+
     def pop
       old_tail = @tail
       node_previous_to_tail = self.at(self.size - 2)

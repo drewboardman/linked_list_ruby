@@ -81,4 +81,24 @@ RSpec.describe LinkedList do
       expect(popped).to eq(node_3)
     end
   end
+
+  describe '#contains?' do
+    it 'returns true' do
+      node_1 = Node.new(4)
+      node_2 = Node.new(15)
+      node_3 = Node.new(6)
+      list = LinkedList::List.new(node_1)
+      list.append(node_2).append(node_3)
+      expect(list.contains?(15)).to eq(true)
+    end
+
+    it 'returns false' do
+      node_1 = Node.new(4)
+      node_2 = Node.new(15)
+      node_3 = Node.new(6)
+      list = LinkedList::List.new(node_1)
+      list.append(node_2).append(node_3)
+      expect(list.contains?(115)).to eq(false)
+    end
+  end
 end
