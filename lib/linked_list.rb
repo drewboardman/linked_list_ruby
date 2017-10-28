@@ -20,6 +20,22 @@ module LinkedList
       @head = node
     end
 
+    def find(val)
+      visited = []
+      index = nil
+      queue = [@head]
+      while !queue.empty? do
+        node = queue.pop
+        visited << node unless visited.include?(node)
+        if node.value == val
+          index = (visited.size - 1)
+        else
+          queue.insert(0, node.next_node) if node.next_node
+        end
+      end
+      index
+    end
+
     def contains?(val)
       queue = [@head]
       while !queue.empty? do
