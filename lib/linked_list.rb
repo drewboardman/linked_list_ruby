@@ -20,6 +20,14 @@ module LinkedList
       @head = node
     end
 
+    def pop
+      old_tail = @tail
+      node_previous_to_tail = self.at(self.size - 2)
+      node_previous_to_tail.next_node = nil
+      @tail = node_previous_to_tail
+      return old_tail
+    end
+
     def size
       visited = []
       queue = []

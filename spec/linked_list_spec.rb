@@ -58,4 +58,27 @@ RSpec.describe LinkedList do
       expect(list.at(2)).to be(node_3)
     end
   end
+
+  describe '#pop' do
+    it 'removes the last node in the linked list' do
+      node_1 = Node.new(4)
+      node_2 = Node.new(15)
+      node_3 = Node.new(6)
+      list = LinkedList::List.new(node_1)
+      list.append(node_2).append(node_3)
+      list.pop
+      expect(list.tail).to eq(node_2)
+      expect(list.tail.next_node).to eq(nil)
+    end
+
+    it 'returns current tail like array.pop' do
+      node_1 = Node.new(4)
+      node_2 = Node.new(15)
+      node_3 = Node.new(6)
+      list = LinkedList::List.new(node_1)
+      list.append(node_2).append(node_3)
+      popped = list.pop
+      expect(popped).to eq(node_3)
+    end
+  end
 end
